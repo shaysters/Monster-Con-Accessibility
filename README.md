@@ -6,7 +6,7 @@ Created by **Shaysters** and **Codex**.
 
 ## Get the Game
 
-Buy/download Monster Prom 4: Monster Con on Steam:
+Buy Monster Prom 4: Monster Con on Steam:
 
 https://store.steampowered.com/app/2869860/Monster_Prom_4_Monster_Con/
 
