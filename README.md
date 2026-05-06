@@ -1,22 +1,18 @@
 # Monster Con TTS Accessibility Mod
 
-Screen reader and accessibility helpers for the Windows Steam version of Monster Prom 4: Monster Con.
+Screen reader accessibility for the Windows Steam version of Monster Prom 4: Monster Con.
 
 Created by Shaysters and Codex.
 
 ## Get the Game
 
-Buy Monster Prom 4: Monster Con on Steam:
-
-https://store.steampowered.com/app/2869860/Monster_Prom_4_Monster_Con/
+Buy Monster Prom 4: Monster Con on Steam: https://store.steampowered.com/app/2869860/Monster_Prom_4_Monster_Con/
 
 ## Install BepInEx
 
 This mod uses BepInEx 5. The current Windows Steam build is x86, so use the x86 Windows package.
 
-Download BepInEx here:
-
-https://github.com/BepInEx/BepInEx/releases
+Download BepInEx 5: https://github.com/BepInEx/BepInEx/releases
 
 Recommended file:
 
