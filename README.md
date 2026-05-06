@@ -24,19 +24,9 @@ Recommended file:
 
 Do not use BepInEx 6 for this release.
 
-Common game install paths:
-
-`C:\Program Files (x86)\Steam\steamapps\common\Monster Prom 4 - Monster Con`
-
-`C:\Program Files\Steam\steamapps\common\Monster Prom 4 - Monster Con`
-
-If Steam is installed somewhere else, open your Steam library folder and then:
-
-`steamapps\common\Monster Prom 4 - Monster Con`
-
 To install BepInEx:
 
-1. Open the folder that contains `MonsterCon.exe`.
+1. Open the folder that contains `MonsterCon.exe`, such as `C:\Program Files (x86)\Steam\steamapps\common\Monster Prom 4 - Monster Con`.
 2. Extract BepInEx into that folder.
 3. Launch the game once, then close it.
 
