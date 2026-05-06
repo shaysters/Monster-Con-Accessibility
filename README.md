@@ -65,3 +65,5 @@ The schedule screen has limited accessibility. The mod reads a short current/nex
 Pepper indicators on date choices are visual only and are not readable by TTS in this release.
 
 Gallery image descriptions are not included.
+
+The release zip includes third-party screen reader support DLLs. Those files are not owned by Shaysters or Codex and remain under their own licenses.
