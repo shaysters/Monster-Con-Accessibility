@@ -4,15 +4,15 @@ Screen reader accessibility for the Windows Steam version of Monster Prom 4: Mon
 
 Created by Shaysters and Codex.
 
-## Get the Game
+## Links
 
-Buy Monster Prom 4: Monster Con on Steam: https://store.steampowered.com/app/2869860/Monster_Prom_4_Monster_Con/
+Monster Prom 4: Monster Con: https://store.steampowered.com/app/2869860/Monster_Prom_4_Monster_Con/
+
+BepInEx 5: https://github.com/BepInEx/BepInEx/releases
 
 ## Install BepInEx
 
 This mod uses BepInEx 5. The current Windows Steam build is x86, so use the x86 Windows package.
-
-Download BepInEx 5: https://github.com/BepInEx/BepInEx/releases
 
 Recommended file:
 
