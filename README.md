@@ -18,8 +18,6 @@ Recommended file:
 
 `BepInEx_win_x86_5.4.23.5.zip`
 
-Do not use BepInEx 6 for this release.
-
 To install BepInEx:
 
 1. Open the folder that contains `MonsterCon.exe`, such as `C:\Program Files (x86)\Steam\steamapps\common\Monster Prom 4 - Monster Con`.
@@ -57,8 +55,6 @@ Controller:
 Left stick repeats the last repeatable spoken text.
 
 Right stick reads the current player's stats.
-
-Repeat is meant for dialogue/manual text, not menu or choice focus.
 
 ## Notes
 
