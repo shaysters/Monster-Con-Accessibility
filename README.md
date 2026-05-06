@@ -1,8 +1,8 @@
 # Monster Con TTS Accessibility Mod
 
-Screen reader and accessibility helpers for the Windows Steam version of **Monster Prom 4: Monster Con**.
+Screen reader and accessibility helpers for the Windows Steam version of Monster Prom 4: Monster Con.
 
-Created by **Shaysters** and **Codex**.
+Created by Shaysters and Codex.
 
 ## Get the Game
 
@@ -12,7 +12,7 @@ https://store.steampowered.com/app/2869860/Monster_Prom_4_Monster_Con/
 
 ## Install BepInEx
 
-This mod uses **BepInEx 5**. The current Windows Steam build is x86, so use the x86 Windows package.
+This mod uses BepInEx 5. The current Windows Steam build is x86, so use the x86 Windows package.
 
 Download BepInEx here:
 
@@ -24,13 +24,21 @@ Recommended file:
 
 Do not use BepInEx 6 for this release.
 
-To install:
+Common game install paths:
 
-1. In Steam, right-click Monster Prom 4: Monster Con.
-2. Choose **Manage**, then **Browse local files**.
-3. Open the folder that contains `MonsterCon.exe`.
-4. Extract BepInEx into that folder.
-5. Launch the game once, then close it.
+`C:\Program Files (x86)\Steam\steamapps\common\Monster Prom 4 - Monster Con`
+
+`C:\Program Files\Steam\steamapps\common\Monster Prom 4 - Monster Con`
+
+If Steam is installed somewhere else, open your Steam library folder and then:
+
+`steamapps\common\Monster Prom 4 - Monster Con`
+
+To install BepInEx:
+
+1. Open the folder that contains `MonsterCon.exe`.
+2. Extract BepInEx into that folder.
+3. Launch the game once, then close it.
 
 ## Install This Mod
 
@@ -75,9 +83,3 @@ The schedule screen has limited accessibility. The mod reads a short current/nex
 Pepper indicators on date choices are visual only and are not readable by TTS in this release.
 
 Gallery image descriptions are not included.
-
-## Troubleshooting
-
-If speech does not work, start your screen reader before launching the game.
-
-If the mod does not load, check that BepInEx is beside `MonsterCon.exe` and the mod files are in `BepInEx\plugins`.
