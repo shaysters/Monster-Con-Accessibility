@@ -93,6 +93,14 @@ The release zip includes Prism (`prism.dll`), a third-party speech library. It i
 
 The installer is built with [Loadstone](https://github.com/bradjrenshaw/loadstone) by Bradley Renshaw.
 
+Speech uses [Prism](https://github.com/ethindp/prism) by Ethin Probst, licensed under the Mozilla Public License 2.0.
+
+## Troubleshooting
+
+- **No speech at all:** make sure `MonsterConAccessibilityMod.dll`, `prism.dll`, and the `Prism` folder are in `BepInEx\plugins`, and that BepInEx is installed. Running the installer again (Repair) fixes most problems.
+- **Speech uses the Windows voice instead of your screen reader:** start your screen reader before the game, then restart the game.
+- **Still stuck:** the BepInEx log is at `<Game Folder>\BepInEx\LogOutput.log`. It shows whether the mod loaded and which speech backend Prism chose.
+
 ## Building from source
 
 For developers. You need the .NET SDK (version 6 or later) and the game installed with BepInEx, because the build uses the game's own files and BepInEx's files from the game folder.
