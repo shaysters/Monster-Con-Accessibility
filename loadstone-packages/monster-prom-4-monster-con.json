@@ -1,0 +1,15 @@
+{
+  "manifestVersion": 1,
+  "kind": "game",
+  "id": "monster-prom-4-monster-con",
+  "name": "Monster Prom 4: Monster Con",
+  "detect": {
+    "steam": {
+      "appId": 2869860,
+      "dirName": "Monster Prom 4 - Monster Con"
+    },
+    "markers": [
+      "MonsterCon.exe"
+    ]
+  }
+}

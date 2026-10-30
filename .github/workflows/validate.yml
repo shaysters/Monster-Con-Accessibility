@@ -1,0 +1,28 @@
+# Validate the Loadstone package files on every change to them.
+name: Validate packages
+
+on:
+  push:
+    paths: ["loadstone-packages/**", ".github/workflows/validate.yml"]
+  pull_request:
+    paths: ["loadstone-packages/**"]
+  workflow_dispatch:
+
+jobs:
+  validate:
+    runs-on: windows-latest
+    defaults:
+      run:
+        shell: bash
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/checkout@v4
+        with:
+          repository: bradjrenshaw/loadstone
+          path: loadstone
+      - uses: Swatinem/rust-cache@v2
+        with:
+          workspaces: loadstone
+      - run: |
+          (cd loadstone && cargo build -q --release -p loadstone-cli)
+          loadstone/target/release/loadstone validate loadstone-packages

@@ -2,7 +2,7 @@
 
 Screen reader accessibility for the Windows Steam version of Monster Prom 4: Monster Con.
 
-Created by Shaysters and Codex.
+Created by Shaysters, Codex, and Claude.
 
 ## Links
 
@@ -10,7 +10,22 @@ Monster Prom 4: Monster Con: https://store.steampowered.com/app/2869860/Monster_
 
 BepInEx 5: https://github.com/BepInEx/BepInEx/releases
 
-## Install BepInEx
+## Install with the installer (recommended)
+
+The installer sets up everything for you, including BepInEx. It needs 64-bit Windows 10 or later and supports the Steam version of the game.
+
+1. Download `MonsterConAccessibilityInstaller.exe` from the [latest release](https://github.com/shaysters/Monster-Con-Accessibility/releases/latest).
+2. Close the game, then run the installer.
+   Windows SmartScreen may warn that the app is unrecognized, because the installer is not code-signed. Choose "More info", then "Run anyway".
+3. The installer finds the game through Steam. If it doesn't, use Browse to pick the folder that contains `MonsterCon.exe`.
+4. Press Install. The installer adds BepInEx if it is missing, then the mod, and removes files left by older versions of the mod.
+5. Start your screen reader, then launch the game.
+
+Run the installer again at any time to update, repair, or uninstall the mod.
+
+## Manual install
+
+### Install BepInEx
 
 This mod uses BepInEx 5. The current Windows Steam build is x86, so use the x86 Windows package.
 
@@ -24,9 +39,9 @@ To install BepInEx:
 2. Extract BepInEx into that folder.
 3. Launch the game once, then close it.
 
-## Install This Mod
+### Install This Mod
 
-Copy these files into:
+Copy the contents of `MonsterConAccessibility.zip` from the latest release into:
 
 `Monster Prom 4 - Monster Con\BepInEx\plugins`
 
@@ -36,11 +51,15 @@ Files:
 
 `ManualPages.en.txt`
 
-`Tolk.dll`
+`prism.dll`
 
-`nvdaControllerClient32.dll`
+`Prism` folder (Prism license files)
 
 Then start your screen reader and launch the game.
+
+## Speech
+
+The mod uses Prism for speech. If NVDA, JAWS, or another supported screen reader is running when the game starts, speech goes through it, and to your braille display if the screen reader supports it. If no screen reader is running, the mod uses built-in Windows speech. If you start your screen reader after the game, restart the game to switch over.
 
 ## Added Controls
 
@@ -49,6 +68,8 @@ Keyboard:
 `R` repeats the last repeatable spoken text.
 
 `T` reads the current player's stats.
+
+`C` reads the online code again while you are in an online lobby. When you host a match, the code is also read automatically, digit by digit.
 
 Controller:
 
@@ -64,6 +85,32 @@ The schedule screen has limited accessibility. The mod reads a short current/nex
 
 Pepper indicators on date choices are visual only and are not readable by TTS in this release.
 
+Food court tables say who is sitting there and how many seats are free.
+
 Gallery image descriptions are not included.
 
-The release zip includes third-party screen reader support DLLs. Those files are not owned by Shaysters or Codex and remain under their own licenses.
+The release zip includes Prism (`prism.dll`), a third-party speech library. It is not owned by Shaysters, Codex, or Claude, and is licensed under the Mozilla Public License 2.0. Its license files are in the `Prism` folder.
+
+The installer is built with [Loadstone](https://github.com/bradjrenshaw/loadstone) by Bradley Renshaw.
+
+## Building from source
+
+For developers. You need the .NET SDK (version 6 or later) and the game installed with BepInEx, because the build uses the game's own files and BepInEx's files from the game folder.
+
+Build:
+
+```
+dotnet build MonsterConAccessibilityMod.csproj -c Release
+```
+
+If the game is not in the default Steam folder, add `-p:GameDir="<game folder>"`. The built mod is in `bin\Release\net472`.
+
+Build the release zip into `dist\MonsterConAccessibility.zip`:
+
+```
+powershell -ExecutionPolicy Bypass -File scripts\package-release.ps1
+```
+
+Add `-GameDir "<game folder>"` if the game is not in the default Steam folder.
+
+To publish a release: update `changes-latest.md`, build the zip, create a draft GitHub release with the zip attached (`gh release create vX.Y.Z --draft --notes-file changes-latest.md dist\MonsterConAccessibility.zip`), then run the **Release** workflow from the Actions tab with the same tag. It builds the installer, writes `loadstone-release.json`, and publishes the release. The installer's package files are in `loadstone-packages/`, and its settings are in `installer/profile.json`.

@@ -1,0 +1,98 @@
+# Cut a release: the branded Loadstone installer (built by Loadstone's reusable
+# workflow), the Loadstone release manifest, and the published GitHub release.
+#
+# The mod zip can't be built here (it compiles against the game's own DLLs), so
+# it is built locally first:
+#   1. Stamp the version and write changes-latest.md, commit, push.
+#   2. Run scripts/package-release.ps1 to build dist/MonsterConAccessibility.zip.
+#   3. Create a draft release with the zip:
+#        gh release create vX.Y.Z --draft --title "Monster Con Accessibility X.Y.Z" --notes-file changes-latest.md dist/MonsterConAccessibility.zip
+#   4. Run this workflow (Actions -> Release -> Run workflow) with the same tag.
+#      It adds the installer and loadstone-release.json, then publishes.
+
+name: Release
+
+on:
+  workflow_dispatch:
+    inputs:
+      version:
+        description: Release tag, vX.Y.Z (a draft release with MonsterConAccessibility.zip must exist)
+        type: string
+        required: true
+      loadstone-ref:
+        description: Loadstone branch, tag, or commit to build the installer and package with
+        type: string
+        default: master
+
+permissions:
+  contents: write
+
+jobs:
+  check:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - env:
+          VERSION: ${{ inputs.version }}
+          GH_TOKEN: ${{ github.token }}
+        run: |
+          [[ "$VERSION" =~ ^v[0-9]+\.[0-9]+\.[0-9]+$ ]] || { echo "Version must look like v1.2.3 (got $VERSION)." >&2; exit 1; }
+          [ -s changes-latest.md ] || { echo "changes-latest.md is empty; write the release notes first." >&2; exit 1; }
+          draft=$(gh release view "$VERSION" --json isDraft --jq .isDraft 2>/dev/null) || {
+            echo "No release $VERSION. Create a draft release with MonsterConAccessibility.zip first (see the top of this file)." >&2; exit 1; }
+          [ "$draft" = "true" ] || { echo "$VERSION is already published." >&2; exit 1; }
+          gh release view "$VERSION" --json assets --jq '.assets[].name' | grep -qx 'MonsterConAccessibility.zip' || {
+            echo "The draft release $VERSION has no MonsterConAccessibility.zip." >&2; exit 1; }
+
+  installers:
+    needs: check
+    uses: bradjrenshaw/loadstone/.github/workflows/build-installer.yml@master
+    with:
+      profile: installer/profile.json
+      windows-name: MonsterConAccessibilityInstaller
+      loadstone-ref: ${{ inputs.loadstone-ref }}
+
+  publish:
+    needs: installers
+    runs-on: windows-latest
+    defaults:
+      run:
+        shell: bash
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/checkout@v4
+        with:
+          repository: bradjrenshaw/loadstone
+          ref: ${{ inputs.loadstone-ref }}
+          path: loadstone
+      - uses: Swatinem/rust-cache@v2
+        with:
+          workspaces: loadstone
+      - uses: actions/download-artifact@v4
+        with:
+          name: installer-windows
+          path: dist
+      - name: Download the mod zip from the draft release
+        env:
+          GH_TOKEN: ${{ github.token }}
+          VERSION: ${{ inputs.version }}
+        run: gh release download "$VERSION" --pattern 'MonsterConAccessibility.zip' --dir dist
+      - name: Release manifest
+        env:
+          VERSION: ${{ inputs.version }}
+        run: |
+          (cd loadstone && cargo build -q --release -p loadstone-cli)
+          loadstone/target/release/loadstone package --version "$VERSION" \
+            --manifest loadstone-packages/monster-con-accessibility.json \
+            --artifact dist/MonsterConAccessibility.zip \
+            --installer dist/MonsterConAccessibilityInstaller.exe \
+            --notes-file changes-latest.md \
+            --out dist/loadstone-release.json
+          loadstone/target/release/loadstone validate dist/loadstone-release.json loadstone-packages
+      - name: Publish
+        env:
+          GH_TOKEN: ${{ github.token }}
+          VERSION: ${{ inputs.version }}
+        run: |
+          gh release upload "$VERSION" dist/MonsterConAccessibilityInstaller.exe dist/loadstone-release.json --clobber
+          gh release edit "$VERSION" --notes-file changes-latest.md --draft=false --latest

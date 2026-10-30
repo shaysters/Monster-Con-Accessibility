@@ -1,0 +1,56 @@
+{
+  "manifestVersion": 1,
+  "kind": "tool",
+  "id": "bepinex-5-win-x86",
+  "name": "BepInEx 5 (32-bit Windows)",
+  "description": "BepInEx 5, the plugin loader for Unity Mono games. This is the 32-bit Windows build, which the Monster Prom games need.",
+  "authors": [
+    "BepInEx team"
+  ],
+  "license": "LGPL-2.1-only",
+  "source": "github:BepInEx/BepInEx",
+  "conflictPolicy": "keep-newer",
+  "pinnedRelease": {
+    "version": "5.4.23",
+    "tag": "v5.4.23.5",
+    "artifacts": [
+      {
+        "file": "BepInEx_win_x86_5.4.23.5.zip",
+        "sha256": "37651c79e40d6f909572a4f461ac25350bb3ef8fe7fbd29f1aa8791a33b84c82",
+        "when": {
+          "platform": "windows"
+        }
+      }
+    ]
+  },
+  "install": [
+    {
+      "step": "extract-archive",
+      "routes": [
+        {
+          "from": "**",
+          "to": "${gameDir}"
+        }
+      ]
+    },
+    {
+      "step": "ensure-dirs",
+      "paths": [
+        "${gameDir}/BepInEx/plugins"
+      ]
+    },
+    {
+      "step": "expect",
+      "checks": [
+        {
+          "fileExists": "${gameDir}/winhttp.dll",
+          "message": "The BepInEx download didn't contain winhttp.dll."
+        },
+        {
+          "fileExists": "${gameDir}/BepInEx/core/BepInEx.dll",
+          "message": "The BepInEx download didn't contain BepInEx.dll."
+        }
+      ]
+    }
+  ]
+}

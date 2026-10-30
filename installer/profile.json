@@ -1,0 +1,9 @@
+{
+  "mode": "single-mod",
+  "mod": "monster-con-accessibility",
+  "title": "Monster Con Accessibility Installer",
+  "registries": [
+    "github:shaysters/Monster-Con-Accessibility"
+  ],
+  "lockRegistries": true
+}

@@ -1,0 +1,70 @@
+{
+  "manifestVersion": 1,
+  "id": "monster-con-accessibility",
+  "name": "Monster Con Accessibility",
+  "description": "Screen reader and text-to-speech accessibility for Monster Prom 4: Monster Con. Speaks menus, dialogue, choices, stats, the schedule, the manual and food court tables, and reads the online code when you host.",
+  "authors": [
+    "Shaysters",
+    "Codex",
+    "Claude"
+  ],
+  "game": "monster-prom-4-monster-con",
+  "distributions": {
+    "steam": "supported"
+  },
+  "dependencies": [
+    {
+      "id": "bepinex-5-win-x86"
+    }
+  ],
+  "channels": {
+    "stable": {
+      "source": "release"
+    }
+  },
+  "install": [
+    {
+      "step": "ensure-dirs",
+      "paths": [
+        "${gameDir}/BepInEx/plugins"
+      ]
+    },
+    {
+      "step": "extract-archive",
+      "routes": [
+        {
+          "from": "**",
+          "to": "${gameDir}/BepInEx/plugins"
+        }
+      ]
+    },
+    {
+      "step": "expect",
+      "checks": [
+        {
+          "fileExists": "${gameDir}/BepInEx/plugins/MonsterConAccessibilityMod.dll",
+          "message": "The download didn't contain the mod (no MonsterConAccessibilityMod.dll)."
+        },
+        {
+          "fileExists": "${gameDir}/BepInEx/plugins/prism.dll",
+          "message": "The download didn't contain the speech library (no prism.dll)."
+        }
+      ]
+    }
+  ],
+  "cleanupLegacy": [
+    "${gameDir}/BepInEx/plugins/Tolk.dll",
+    "${gameDir}/BepInEx/plugins/nvdaControllerClient32.dll",
+    "${gameDir}/BepInEx/plugins/nvdaControllerClient64.dll",
+    "${gameDir}/Tolk.dll",
+    "${gameDir}/nvdaControllerClient32.dll",
+    "${gameDir}/nvdaControllerClient64.dll"
+  ],
+  "packaging": {
+    "artifacts": [
+      {
+        "file": "../dist/MonsterConAccessibility.zip"
+      }
+    ]
+  }
+}
