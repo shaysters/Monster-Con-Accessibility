@@ -51,6 +51,13 @@ namespace MonsterConAccessibilityMod
 
         internal static void Tick()
         {
+            // Also watch the label itself, in case the code is filled in later than
+            // SetMatchInfo (or by a path we don't patch).
+            if (_label != null)
+            {
+                OnSetMatchInfo(_label);
+            }
+
             if (_pendingCode == null || Time.realtimeSinceStartup < _pendingAt)
             {
                 return;
@@ -114,6 +121,24 @@ namespace MonsterConAccessibilityMod
         private static void Postfix(OnlineLobbyOnMatchView __instance)
         {
             Run("OnlineLobbyOnMatchView.SetMatchInfo postfix", () => OnlineCodeAccessibility.OnSetMatchInfo(__instance.matchNameLabel));
+        }
+    }
+
+    [HarmonyPatch(typeof(OnlineLobbyOnMatchView), "Show")]
+    internal static class OnlineLobbyOnMatchViewShowPatch
+    {
+        private static void Postfix(OnlineLobbyOnMatchView __instance)
+        {
+            Run("OnlineLobbyOnMatchView.Show postfix", () => OnlineCodeAccessibility.OnSetMatchInfo(__instance.matchNameLabel));
+        }
+    }
+
+    [HarmonyPatch(typeof(OnlineLobbyOnMatchResumedView), "Show")]
+    internal static class OnlineLobbyOnMatchResumedViewShowPatch
+    {
+        private static void Postfix(OnlineLobbyOnMatchResumedView __instance)
+        {
+            Run("OnlineLobbyOnMatchResumedView.Show postfix", () => OnlineCodeAccessibility.OnSetMatchInfo(__instance.matchNameLabel));
         }
     }
 

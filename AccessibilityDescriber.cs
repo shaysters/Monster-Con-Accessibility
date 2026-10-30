@@ -39,7 +39,9 @@ namespace MonsterConAccessibilityMod
                 }
 
                 CafeteriaLocationWidget cafeteriaLocation = go.GetComponentInParent<CafeteriaLocationWidget>();
-                if (cafeteriaLocation != null && cafeteriaLocation.button != null && cafeteriaLocation.button.gameObject == go)
+                // Any focused object inside the table: controller navigation and mouse hover
+                // don't always land on the button itself.
+                if (cafeteriaLocation != null)
                 {
                     text = DescribeCafeteriaLocation(cafeteriaLocation);
                     return true;
