@@ -10,7 +10,7 @@ using UnityEngine.SceneManagement;
 
 namespace MonsterConAccessibilityMod
 {
-    [BepInPlugin("shay.monstercon.accessibility.tts", "Monster Con TTS Accessibility", "1.0.0")]
+    [BepInPlugin("shay.monstercon.accessibility.tts", "Monster Con TTS Accessibility", "1.1.2")]
     public sealed class Plugin : BaseUnityPlugin
     {
         private const string HarmonyId = "shay.monstercon.accessibility.tts";
