@@ -1,6 +1,6 @@
 # Changelog
 
-## Unreleased
+## 1.1.3 - 2026-10-30
 
 ### Fixed
 - The online code is read reliably when you host a match.
