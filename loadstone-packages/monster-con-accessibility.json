@@ -10,7 +10,9 @@
   ],
   "game": "monster-prom-4-monster-con",
   "distributions": {
-    "steam": "supported"
+    "steam": "supported",
+    "gog": "untested",
+    "standalone": "untested"
   },
   "dependencies": [
     {

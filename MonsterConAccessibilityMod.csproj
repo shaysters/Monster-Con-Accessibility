@@ -43,6 +43,10 @@
       <HintPath>$(GameDir)\MonsterCon_Data\Managed\UnityEngine.CoreModule.dll</HintPath>
       <Private>false</Private>
     </Reference>
+    <Reference Include="UnityEngine.UnityWebRequestModule">
+      <HintPath>$(GameDir)\MonsterCon_Data\Managed\UnityEngine.UnityWebRequestModule.dll</HintPath>
+      <Private>false</Private>
+    </Reference>
     <Reference Include="UnityEngine.PhysicsModule">
       <HintPath>$(GameDir)\MonsterCon_Data\Managed\UnityEngine.PhysicsModule.dll</HintPath>
       <Private>false</Private>

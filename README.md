@@ -1,124 +1,98 @@
-# Monster Con TTS Accessibility Mod
+# Monster Con Accessibility
 
-Screen reader accessibility for the Windows Steam version of Monster Prom 4: Monster Con.
+Monster Con Accessibility is a mod that makes Monster Prom 4: Monster Con, the multiplayer dating sim by Beautiful Glitch, playable with a screen reader. It reads menus, dialogue, choices, stats, the schedule, the in-game manual and food court tables, and reads the online code when you host a match.
 
-Created by Shaysters, Codex, and Claude.
+It works with NVDA, JAWS and other Windows screen readers, and falls back to Windows' built-in voices if no screen reader is running. If your screen reader has a braille display connected, everything the mod reads goes to braille too.
 
-## Links
+- Join the Discord to chat, get help or report problems: <https://discord.gg/KNDXhztGGK>
+- Support shaysters on Ko-fi: <https://ko-fi.com/shaysters>
 
-Monster Prom 4: Monster Con: https://store.steampowered.com/app/2869860/Monster_Prom_4_Monster_Con/
+Version 1.1.4. See [CHANGELOG.md](CHANGELOG.md) for what has changed.
 
-BepInEx 5: https://github.com/BepInEx/BepInEx/releases
+## Requirements
 
-## Install with the installer (recommended)
+- Monster Prom 4: Monster Con for Windows, from Steam or GOG:
+  - Steam: <https://store.steampowered.com/app/2869860/Monster_Prom_4_Monster_Con/>
+  - GOG: <https://www.gog.com/en/game/monster_prom_4_monster_con>
+- A screen reader such as NVDA or JAWS (optional; without one, the mod uses Windows' built-in speech).
 
-The installer sets up everything for you, including BepInEx. It needs 64-bit Windows 10 or later and supports the Steam version of the game.
+The mod has been tested with the Steam version. The GOG and DRM-free versions should work too, but they haven't been tested yet.
 
-1. Download `MonsterConAccessibilityInstaller.exe` from the [latest release](https://github.com/shaysters/Monster-Con-Accessibility/releases/latest).
-2. Close the game, then run the installer.
-   Windows SmartScreen may warn that the app is unrecognized, because the installer is not code-signed. Choose "More info", then "Run anyway".
-3. The installer finds the game through Steam. If it doesn't, use Browse to pick the folder that contains `MonsterCon.exe`.
-4. Press Install. The installer adds BepInEx if it is missing, then the mod, and removes files left by older versions of the mod.
-5. Start your screen reader, then launch the game.
+## Installing
 
-Run the installer again at any time to update, repair, or uninstall the mod.
+1. Close the game if it's running.
+2. Download **MonsterConAccessibilityInstaller.exe** from the [latest release](https://github.com/shaysters/Monster-Con-Accessibility/releases/latest). It needs 64-bit Windows 10 or later.
+3. Run it. Windows SmartScreen may warn that the app is unrecognized, because the installer is not code-signed. Choose **More info**, then **Run anyway**.
+4. The installer finds your Steam copy of the game by itself. For a GOG or DRM-free copy, or if it can't find the game, use the Browse button next to the game folder and choose the folder that contains `MonsterCon.exe`.
+5. Choose **Install**. The installer adds BepInEx if it's missing, then the mod, and removes files left by older versions of the mod.
+6. Start your screen reader, then start the game.
 
-## Manual install
+### Updating and uninstalling
 
-### Install BepInEx
+Keep the installer. Run it again to update to the newest version, repair the mod, or uninstall it. Close the game first. The installer says on its first page when an update is available, and the mod tells you too, once the title menu has been read.
 
-This mod uses BepInEx 5. The current Windows Steam build is x86, so use the x86 Windows package.
+### Installing by hand
 
-Recommended file:
+1. Download BepInEx 5 for 32-bit Windows, `BepInEx_win_x86_5.4.23.5.zip`, from the [BepInEx releases page](https://github.com/BepInEx/BepInEx/releases). The game is 32-bit, so the x64 package won't work.
+2. Extract it into the game folder, the one that contains `MonsterCon.exe`. On a default Steam install that's:
 
-`BepInEx_win_x86_5.4.23.5.zip`
+   ```
+   C:\Program Files (x86)\Steam\steamapps\common\Monster Prom 4 - Monster Con
+   ```
 
-To install BepInEx:
+   For GOG or DRM-free copies, use the folder you installed the game to.
+3. Start the game once so BepInEx can set itself up, then close it.
+4. Download **MonsterConAccessibility.zip** from the [latest release](https://github.com/shaysters/Monster-Con-Accessibility/releases/latest) and extract everything in it into `BepInEx\plugins` in the game folder. That folder should then contain `MonsterConAccessibilityMod.dll`, `ManualPages.en.txt`, `prism.dll` and the `Prism` folder (Prism's license files).
+5. Start your screen reader, then start the game.
 
-1. Open the folder that contains `MonsterCon.exe`, such as `C:\Program Files (x86)\Steam\steamapps\common\Monster Prom 4 - Monster Con`.
-2. Extract BepInEx into that folder.
-3. Launch the game once, then close it.
+To uninstall a manual install, delete the files and folder listed in step 4 from `BepInEx\plugins`. To remove BepInEx too, delete the `BepInEx` folder, `winhttp.dll`, `doorstop_config.ini`, `.doorstop_version` and `changelog.txt` from the game folder.
 
-### Install This Mod
+## Keys
 
-Copy the contents of `MonsterConAccessibility.zip` from the latest release into:
+| Keyboard | Controller | What it does |
+|---|---|---|
+| r | Left stick click | Repeat the last thing the mod said. |
+| t | Right stick click | Read the current player's stats. |
+| c | None | In an online lobby, read the online code again. |
 
-`Monster Prom 4 - Monster Con\BepInEx\plugins`
+Notes:
 
-Files:
+- When you host an online match, the online code is read automatically, digit by digit.
+- Food court tables say who is sitting there and how many seats are free.
+- The schedule screen reads a short summary of the current and next stop.
 
-`MonsterConAccessibilityMod.dll`
+## Known limitations
 
-`ManualPages.en.txt`
-
-`prism.dll`
-
-`Prism` folder (Prism license files)
-
-Then start your screen reader and launch the game.
-
-## Speech
-
-The mod uses Prism for speech. If NVDA, JAWS, or another supported screen reader is running when the game starts, speech goes through it, and to your braille display if the screen reader supports it. If no screen reader is running, the mod uses built-in Windows speech. If you start your screen reader after the game, restart the game to switch over.
-
-## Added Controls
-
-Keyboard:
-
-`R` repeats the last repeatable spoken text.
-
-`T` reads the current player's stats.
-
-`C` reads the online code again while you are in an online lobby. When you host a match, the code is also read automatically, digit by digit.
-
-Controller:
-
-Left stick repeats the last repeatable spoken text.
-
-Right stick reads the current player's stats.
-
-## Notes
-
-The in-game manual text included with this mod was written by AI. It may not be completely accurate.
-
-The schedule screen has limited accessibility. The mod reads a short current/next stop summary.
-
-Pepper indicators on date choices are visual only and are not readable by TTS in this release.
-
-Food court tables say who is sitting there and how many seats are free.
-
-Gallery image descriptions are not included.
-
-The release zip includes Prism (`prism.dll`), a third-party speech library. It is not owned by Shaysters, Codex, or Claude, and is licensed under the Mozilla Public License 2.0. Its license files are in the `Prism` folder.
-
-The installer is built with [Loadstone](https://github.com/bradjrenshaw/loadstone) by Bradley Renshaw.
-
-Speech uses [Prism](https://github.com/ethindp/prism) by Ethin Probst, licensed under the Mozilla Public License 2.0.
+- The schedule screen only has the short summary above.
+- Pepper markers on date choices are only shown as pictures, so the mod can't read them yet.
+- Gallery pictures don't have descriptions.
+- The in-game manual text included with the mod was written by AI and may not be completely accurate.
 
 ## Troubleshooting
 
-- **No speech at all:** make sure `MonsterConAccessibilityMod.dll`, `prism.dll`, and the `Prism` folder are in `BepInEx\plugins`, and that BepInEx is installed. Running the installer again (Repair) fixes most problems.
-- **Speech uses the Windows voice instead of your screen reader:** start your screen reader before the game, then restart the game.
-- **Still stuck:** the BepInEx log is at `<Game Folder>\BepInEx\LogOutput.log`. It shows whether the mod loaded and which speech backend Prism chose.
-
-## Building from source
-
-For developers. You need the .NET SDK (version 6 or later) and the game installed with BepInEx, because the build uses the game's own files and BepInEx's files from the game folder.
-
-Build:
+BepInEx keeps a log in the game folder:
 
 ```
-dotnet build MonsterConAccessibilityMod.csproj -c Release
+BepInEx\LogOutput.log
 ```
 
-If the game is not in the default Steam folder, add `-p:GameDir="<game folder>"`. The built mod is in `bin\Release\net472`.
+It shows whether the mod loaded and which speech output Prism chose. If something goes wrong, include the log when you report it.
 
-Build the release zip into `dist\MonsterConAccessibility.zip`:
+- **No speech at all:** make sure `MonsterConAccessibilityMod.dll`, `prism.dll` and the `Prism` folder are in `BepInEx\plugins`, and that BepInEx is installed. Running the installer again and choosing Repair fixes most problems.
+- **Windows speech talks instead of your screen reader:** start your screen reader before the game. If you start it after, restart the game.
 
-```
-powershell -ExecutionPolicy Bypass -File scripts\package-release.ps1
-```
+To report a problem or suggest something, open an issue on the [GitHub page](https://github.com/shaysters/Monster-Con-Accessibility/issues).
 
-Add `-GameDir "<game folder>"` if the game is not in the default Steam folder.
+## Credits
 
-To publish a release: update `changes-latest.md`, build the zip, create a draft GitHub release with the zip attached (`gh release create vX.Y.Z --draft --notes-file changes-latest.md dist\MonsterConAccessibility.zip`), then run the **Release** workflow from the Actions tab with the same tag. It builds the installer, writes `loadstone-release.json`, and publishes the release. The installer's package files are in `loadstone-packages/`, and its settings are in `installer/profile.json`.
+This mod was developed by [Shaysters](https://github.com/shaysters), with code written by Codex (OpenAI) and Claude (Anthropic).
+
+The installer is built with [Loadstone](https://github.com/bradjrenshaw/loadstone) by [Bradley Renshaw](https://github.com/bradjrenshaw).
+
+Speech is provided by [Prism](https://github.com/ethindp/prism) by Ethin Probst, under the MPL-2.0 license. It isn't owned by Shaysters, Codex or Claude. Its license files are in the `Prism` folder.
+
+Monster Prom 4: Monster Con is made by Beautiful Glitch. This mod isn't affiliated with or endorsed by Beautiful Glitch.
+
+## For developers
+
+Build and release instructions are in [DEVELOPING.md](DEVELOPING.md).

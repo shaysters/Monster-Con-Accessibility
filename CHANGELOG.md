@@ -1,5 +1,13 @@
 # Changelog
 
+## 1.1.4 - 2026-10-31
+
+### Added
+- When the title menu has been read, the mod tells you if a newer version is out. Run the installer to update.
+
+### Changed
+- The installer accepts GOG and DRM-free copies of the game. It doesn't find them by itself, so use Browse to pick the game folder. The mod has only been tested with the Steam version, and the installer says so.
+
 ## 1.1.3 - 2026-10-30
 
 ### Fixed

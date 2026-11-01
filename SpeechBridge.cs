@@ -54,6 +54,12 @@ namespace MonsterConAccessibilityMod
         private string _lastText;
         private float _lastSpeechTime;
 
+        // Time.realtimeSinceStartup of the last thing spoken, so the update notice can wait for a pause.
+        internal float LastSpeechTime => _lastSpeechTime;
+
+        // How many lines have been spoken since the game started.
+        internal int SpeakCount { get; private set; }
+
         internal SpeechBridge(ManualLogSource log)
         {
             _log = log;
@@ -95,6 +101,7 @@ namespace MonsterConAccessibilityMod
             }
             _lastText = text;
             _lastSpeechTime = now;
+            SpeakCount++;
 
             if (_backend == IntPtr.Zero)
             {

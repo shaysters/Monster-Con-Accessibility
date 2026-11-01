@@ -1269,6 +1269,7 @@ namespace MonsterConAccessibilityMod
             {
                 HotkeyAccessibility.Tick("SceneController.Update");
                 CreditsAccessibility.Tick();
+                UpdateCheck.Tick();
             });
         }
     }
